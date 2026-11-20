@@ -61,10 +61,10 @@ builder.addEventListener('submit',async event=>{
   parsed.querySelector('#letterPanel .sign').textContent=value('signature');
   parsed.querySelector('#puzzlePhoto').setAttribute('src',imageData);
   const audio=parsed.querySelector('#bgMusic');
-  if(audio)audio.remove();
+  /* keep music */
   for(const script of parsed.querySelectorAll('script')){
    if(!script.textContent.includes("const bgMusic=document.getElementById('bgMusic')"))continue;
-   script.textContent=script.textContent.replace(/const bgMusic=document\.getElementById\('bgMusic'\);[\s\S]*?document\.addEventListener\('keydown',startBackgroundMusic\);/,'const bgMusic=null;');
+
    script.textContent=script.textContent.replace("if (password === '0720') {","if (password === '"+password+"') {");
    script.textContent=script.textContent.replace('const start=new Date(2025,6,20);',"const start=new Date('"+relationshipStart+"T00:00:00');");
    const counterCode="function updateAnniversaryCountdown(){const now=new Date();const day="+startDay+";const target=(year,month)=>new Date(year,month,Math.min(day,new Date(year,month+1,0).getDate()),0,0,0,0);let next=target(now.getFullYear(),now.getMonth());if(next<=now)next=target(now.getFullYear(),now.getMonth()+1);const ms=next-now;const days=Math.floor(ms/86400000);const hours=Math.floor(ms%86400000/3600000);const minutes=Math.floor(ms%3600000/60000);const seconds=Math.floor(ms%60000/1000);document.getElementById('anniversaryCountdown').textContent=days+'d '+hours+'h '+minutes+'m '+seconds+'s until our next monthsary ♡';}updateAnniversaryCountdown();setInterval(updateAnniversaryCountdown,1000);";
