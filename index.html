@@ -61,7 +61,7 @@ builder.addEventListener('submit',async event=>{
   parsed.querySelector('#letterPanel .sign').textContent=value('signature');
   parsed.querySelector('#puzzlePhoto').setAttribute('src',imageData);
   const audio=parsed.querySelector('#bgMusic');
-  /* keep music */
+  if(audio)audio.src='https://red182.github.io/Monthsary-Letter./Be%20With%20You.mp3';
   for(const script of parsed.querySelectorAll('script')){
    if(!script.textContent.includes("const bgMusic=document.getElementById('bgMusic')"))continue;
 
